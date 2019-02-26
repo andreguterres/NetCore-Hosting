@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
+
 namespace Hosting
 {
     class Program
@@ -10,13 +11,14 @@ namespace Hosting
         static void Main(string[] args)
         {
             var host = new WebHostBuilder()
-              .UseKestrel()
-              .UseStartup<Startup>()
-              .Build();
+                .UseKestrel()
+                .UseStartup<Startup>()
+                .Build();
 
             host.Run();
-
 
         }
     }
 }
+
+
