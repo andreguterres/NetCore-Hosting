@@ -8,6 +8,7 @@ using System.Text;
 namespace Hosting
 {
     public class Startup
+
     {
         private readonly IConfiguration _configuration;
         public Startup(IConfiguration configuration)
@@ -17,19 +18,44 @@ namespace Hosting
 
         public void Configure(IApplicationBuilder app)
         {
+            var ordem = string.Empty;
+
+
+            // Executa pela sequencia dos números das Ordens.
+
             app.Use(async(context, next)=>
 
             {
-                //await context.Response.WriteAsync("Trabalhando com Classe Startup");
-               await context.Response.WriteAsync("Bem vindo 1");
-               
+                ordem += "1";
+
+                //Ordem 1
+                await next.Invoke(); // Chama o proximo Middware que é o proximo app.Use
+       
+
+
+                //Ordem 4
+                //await context.Response.WriteAsync("Bem vindo 1");
+                ordem += "4";
+                await context.Response.WriteAsync($"Ordem {ordem}");
+
+
             });
 
             app.Use(async (context, next) =>
 
             {
-                //await context.Response.WriteAsync("Trabalhando com Classe Startup");
-                await context.Response.WriteAsync("Bem vindo 2");
+                ordem += "2";
+
+                //Ordem 2
+                await next.Invoke();
+
+
+                ordem += "3";
+
+
+                //Ordem 3
+                //await context.Response.WriteAsync($"Ordem {ordem}");
+
 
             });
 
