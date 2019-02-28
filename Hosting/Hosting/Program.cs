@@ -9,14 +9,22 @@ namespace Hosting
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
 
-            var host = WebHost
-            .CreateDefaultBuilder(args)
+            //var host = new WebHostBuilder()
+            //.UseKestrel()
+            //.UseStartup<Startup>()
+            //.Build();
+            //host.Run();
+
+        var host = WebHost
+            .CreateDefaultBuilder(args)            
             .UseStartup<Startup>()
             .Build();
-             host.Run();
+            host.Run();
+
+
             //var host = new WebHostBuilder()
             //    .UseKestrel()
             //    .UseStartup<Startup>()

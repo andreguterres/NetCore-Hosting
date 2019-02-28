@@ -10,21 +10,31 @@ namespace Hosting
     public class Startup
     {
         private readonly IConfiguration _configuration;
+        public Startup(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
 
         public void Configure(IApplicationBuilder app)
         {
+            app.Use(async(context, next)=>
+
+            {
+                //await context.Response.WriteAsync("Trabalhando com Classe Startup");
+               await context.Response.WriteAsync("Bem vindo 1");
+               
+            });
+
             app.Use(async (context, next) =>
 
             {
                 //await context.Response.WriteAsync("Trabalhando com Classe Startup");
-                await context.Response.WriteAsync(_configuration["Application"]);
+                await context.Response.WriteAsync("Bem vindo 2");
+
             });
 
         }
-        public Startup(IConfiguration configuration)
-        {
-            _configuration = configuration; 
-        }
+      
     }
    
 }
